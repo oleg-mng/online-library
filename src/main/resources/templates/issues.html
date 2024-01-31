@@ -1,0 +1,26 @@
+
+<html>
+<head>
+    <title>Issues</title>
+</head>
+<body>
+<h1>Issues:</h1>
+<table>
+    <tr>
+        <th>id</th>
+        <th>book_id</th>
+        <th>reader_id</th>
+        <th>timestamp</th>
+        <th>dueDate</th>
+    </tr>
+    <tr th:each= "issue: ${issues}">
+        <td th:text = "${issue.id}"></td>
+        <td th:text = "${issue.bookId}"></td>
+        <td th:text = "${issue.readerId}"></td>
+        <td th:text = "${issue.timestamp}"></td>
+        <td th:text = "${issue.dueDate}"></td>
+
+    </tr>
+</table>
+</body>
+</html>

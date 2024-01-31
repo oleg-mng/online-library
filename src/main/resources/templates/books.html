@@ -1,0 +1,19 @@
+
+<html>
+<head>
+    <title>Books</title>
+</head>
+<body>
+<h1>Books:</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    <tr th:each= "book: ${books}">
+        <td th:text = "${book.id}"></td>
+        <td th:text = "${book.name}"></td>
+    </tr>
+</table>
+</body>
+</html>

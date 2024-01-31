@@ -18,12 +18,14 @@ public class Issue {
      * Дата выдачи
      */
     private final LocalDateTime timestamp;
+    private final LocalDateTime dueDate;
 
-    public Issue(long bookId, long readerId) {
+    public Issue(long bookId, long readerId, LocalDateTime dueDate) {
+        this.dueDate = dueDate;
         this.id = sequence++;
         this.bookId = bookId;
         this.readerId = readerId;
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = LocalDateTime.now().minusDays(3);;
     }
 
 }

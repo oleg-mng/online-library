@@ -7,12 +7,10 @@ import com.olemng.onlinelibrary.repository.IssueRepository;
 import com.olemng.onlinelibrary.repository.ReaderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +30,7 @@ public class IssuerService {
         }
         // можно проверить, что у читателя нет книг на руках (или его лимит не превышает в Х книг)
 
-        Issue issue = new Issue(request.getBookId(), request.getReaderId());
+        Issue issue = new Issue(request.getBookId(), request.getReaderId(), request.getDueDate);
         issueRepository.save(issue);
         return issue;
     }

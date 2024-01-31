@@ -50,5 +50,8 @@ public class ReaderRepository {
         readersR.add(reader);
         return readersR;
     }
+    public List<Reader> getReaders() {
+        return readers;
+    }
 
 }

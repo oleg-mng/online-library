@@ -1,11 +1,10 @@
 package com.olemng.onlinelibrary.repository;
 
-import com.olemng.onlinelibrary.model.Book;
 import com.olemng.onlinelibrary.model.Issue;
-import com.olemng.onlinelibrary.model.Reader;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,9 +21,11 @@ public class IssueRepository {
     @PostConstruct
     public void generateData() {
         issues.addAll(List.of(
-                new Issue(1, 2),
-                new Issue(2, 3),
-                new Issue(3, 2)
+                new Issue(1, 2, LocalDateTime.now().minusDays(2)),
+                new Issue(2, 3, LocalDateTime.now().minusDays(1)),
+                new Issue(3, 2, null),
+                new Issue(9, 2, LocalDateTime.now().minusDays(2)),
+                new Issue(7, 3, LocalDateTime.now().minusDays(1))
 
         ));
     }
