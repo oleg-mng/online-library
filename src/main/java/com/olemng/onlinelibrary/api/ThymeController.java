@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -44,5 +45,16 @@ private IssueRepository issues;
     public String getIssues(Model model){
         model.addAttribute("issues", issues.getIssues());
         return "issues";
+    }
+
+//    @GetMapping("/reader/{id}")
+//    public String getReaderBooksOnHand(@PathVariable long id, Model model){
+//        model.addAttribute("user", readers.readerBooksOnHand());
+//        return "readers";
+//    }
+    @GetMapping("/reader/{id}")
+    public String getReaderHandBooks(@PathVariable long id, Model model){
+        model.addAttribute("issues", issues.getReaderBooksOnHand(id));
+        return "readerbookshand";
     }
 }

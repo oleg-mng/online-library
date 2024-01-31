@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 
 @Repository
 public class ReaderRepository {
@@ -53,5 +56,11 @@ public class ReaderRepository {
     public List<Reader> getReaders() {
         return readers;
     }
+
+    public List<Reader> readerBooksOnHand() {
+        return (List<Reader>) readers.stream().flatMap(s -> Stream.ofNullable(s));
+    }
+
+
 
 }
