@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 @Data
 public class IssueRequest {
 
+    private long id;
+
     public LocalDateTime getDueDate;
     /**
      * Идентификатор читателя
