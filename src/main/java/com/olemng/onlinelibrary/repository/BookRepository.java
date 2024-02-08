@@ -2,15 +2,10 @@ package com.olemng.onlinelibrary.repository;
 
 
 import com.olemng.onlinelibrary.model.Book;
-import com.olemng.onlinelibrary.model.Reader;
-import jakarta.annotation.PostConstruct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
@@ -21,7 +16,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     String findBookNameById(long id);
 
-    List<Book> deleteBookById(long id);
+    void deleteBookById(long id);
 
 
 }
