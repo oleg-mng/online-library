@@ -12,37 +12,37 @@ import org.springframework.security.web.SecurityFilterChain;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
-public class SecurityConfiguration {
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
-        converter.setJwtGrantedAuthoritiesConverter(source -> {
-            Map<String, Object> resourceAccess = source.getClaim("realm_access");
-            List<String> roles = (List<String>) resourceAccess.get("roles");
-
-            return roles.stream()
-                    .map(SimpleGrantedAuthority::new)
-                    .collect(Collectors.toList());
-        });
-
-        return httpSecurity
-                .authorizeHttpRequests(configurer -> configurer
-                        .requestMatchers("/book/**").hasAuthority("admin")
-                        .requestMatchers("/reader/**").hasAuthority("reader")
-                        .requestMatchers("/issue/**").hasAuthority("librarian")
-                        .requestMatchers("/auth/**").permitAll()
-                        .anyRequest().denyAll()
-                )
-//      .formLogin(Customizer.withDefaults())
-                .oauth2ResourceServer(configurer -> configurer
-                        .jwt(jwtConfigurer -> jwtConfigurer
-                                .jwtAuthenticationConverter(converter))
-                )
-                .build();
-    }
-}
+//
+//@Configuration
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(securedEnabled = true)
+//public class SecurityConfiguration {
+//    @Bean
+//    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+//        JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
+//        converter.setJwtGrantedAuthoritiesConverter(source -> {
+//            Map<String, Object> resourceAccess = source.getClaim("realm_access");
+//            List<String> roles = (List<String>) resourceAccess.get("roles");
+//
+//            return roles.stream()
+//                    .map(SimpleGrantedAuthority::new)
+//                    .collect(Collectors.toList());
+//        });
+//
+//        return httpSecurity
+//                .authorizeHttpRequests(configurer -> configurer
+//                        .requestMatchers("/book/**").hasAuthority("admin")
+//                        .requestMatchers("/reader/**").hasAuthority("reader")
+//                        .requestMatchers("/issue/**").hasAuthority("librarian")
+//                        .requestMatchers("/auth/**").permitAll()
+//                        .anyRequest().denyAll()
+//                )
+////      .formLogin(Customizer.withDefaults())
+//                .oauth2ResourceServer(configurer -> configurer
+//                        .jwt(jwtConfigurer -> jwtConfigurer
+//                                .jwtAuthenticationConverter(converter))
+//                )
+//                .build();
+//    }
+//}
 
